@@ -1,7 +1,9 @@
 package com.sky.context;
 
 public class BaseContext {
-
+    /**
+     * ThreadLocal 用于保存当前线程的上下文信息，获取当前登录用户的ID
+     */
     public static ThreadLocal<Long> threadLocal = new ThreadLocal<>();
 
     public static void setCurrentId(Long id) {

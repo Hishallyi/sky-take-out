@@ -51,6 +51,7 @@ public class EmployeeController {
 
         //登录成功后，生成jwt令牌
         Map<String, Object> claims = new HashMap<>();
+        // 在此已经存入员工ID，所以可以对Token进行解析来获取员工ID
         claims.put(JwtClaimsConstant.EMP_ID, employee.getId());
         String token = JwtUtil.createJWT(
                 jwtProperties.getAdminSecretKey(),
