@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "sky.jwt")
 @Data
 public class JwtProperties {
+    // 将SpringBoot的配置文件中sky.jwt下面的配置属性封装到JwtProperties类中
 
     /**
      * 管理端员工生成jwt令牌相关配置
