@@ -11,8 +11,8 @@ import java.util.List;
  * 封装分页查询结果
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@AllArgsConstructor // 生成一个包含所有参数的构造方法
+@NoArgsConstructor // 生成一个无参构造方法
 public class PageResult implements Serializable {
 
     private long total; //总记录数
