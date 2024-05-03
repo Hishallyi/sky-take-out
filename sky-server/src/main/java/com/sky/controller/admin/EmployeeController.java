@@ -95,16 +95,31 @@ public class EmployeeController {
 
     /**
      * 员工分页查询，由于前端传入的信息不是JSON格式，因此无需在形参中加入@RequestBody注解，直接在方法中接收参数即可
-     * @RequestParam注解常用语POST请求
+     * 其中@RequestParam注解常用语POST请求
      *
      * @param employeePageQueryDTO：分页查询条件
      * @return
      */
     @GetMapping("/page")
     @ApiOperation("员工分页查询")
-    public Result<PageResult> page(EmployeePageQueryDTO employeePageQueryDTO){
+    public Result<PageResult> page(EmployeePageQueryDTO employeePageQueryDTO) {
         log.info("员工分页查询：{}", employeePageQueryDTO);
         PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(pageResult);
+    }
+
+    /**
+     * 设置员工状态
+     *
+     * @param status：状态，1表示启用，0表示停用
+     * @param id：员工ID，通过地址栏传递
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation("启用禁用员工账号")
+    public Result startOrStop(@PathVariable Integer status, Long id) {
+        log.info("设置员工状态：status={}, id={}", status, id);
+        employeeService.startOrStop(status, id);
+        return Result.success();
     }
 }

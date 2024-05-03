@@ -65,6 +65,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee;
     }
 
+    /**
+     * 新增员工
+     *
+     * @param employeeDTO
+     */
     @Override
     public void save(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
@@ -81,6 +86,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeMapper.insert(employee);
     }
 
+    /**
+     * 分页查询员工
+     *
+     * @param employeePageQueryDTO
+     * @return
+     */
     @Override
     public PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO) {
         // 使用Mybatis PageHelper分页插件进行分页查询
@@ -91,4 +102,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         return new PageResult(page.getTotal(), page.getResult());
     }
 
+    /**
+     * 启用禁用员工状态
+     *
+     * @param status
+     * @param id
+     */
+    @Override
+    public void startOrStop(Integer status, Long id) {
+        // 使用builder模式构建员工对象
+        Employee employee = Employee.builder()
+                .status(status)
+                .id(id)
+                .build();
+        employeeMapper.update(employee);
+    }
 }
